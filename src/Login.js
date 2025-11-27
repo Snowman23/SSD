@@ -141,36 +141,34 @@ const handleGoogleLogin = async () => {
         Sign in with Google
       </button>
 
-      {/* 👇 Skip Login only in development */}
-      {process.env.NODE_ENV === "development" && (
-        <div style={{ marginTop: 12 }}>
-          <button
-            type="button"
-            onClick={() => {
-              // Send dev login notification
-              notifyDevLogin();
+      {/* 👇 Skip Login only when running locally */}
+      {window.location.hostname === "localhost" && (
+      <div style={{ marginTop: 12 }}>
+        <button
+          type="button"
+          onClick={() => {
+            notifyDevLogin();
 
-              // Continue login flow
-              onLogin({
-                uid: "dev-user-1",
-                email: "dev@local",
-                displayName: "Dev User"
-              });
-            }}
-            style={{
-              width: "100%",
-              padding: "10px",
-              backgroundColor: "#6c757d",
-              color: "white",
-              border: "none",
-              borderRadius: "4px",
-              cursor: "pointer"
-            }}
-          >
-            Skip Login (dev)
-          </button>
-        </div>
-      )}
+            onLogin({
+              uid: "dev-user-1",
+              email: "dev@local",
+              displayName: "Dev User"
+            });
+          }}
+          style={{
+            width: "100%",
+            padding: "10px",
+            backgroundColor: "#6c757d",
+            color: "white",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer"
+          }}
+        >
+          Skip Login (dev)
+        </button>
+      </div>
+    )}
 
       <p style={{ marginTop: "10px" }}>
         Don't have an account?
