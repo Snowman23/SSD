@@ -141,14 +141,15 @@ const handleGoogleLogin = async () => {
         Sign in with Google
       </button>
 
-      {/* 👇 Skip Login only when running locally */}
-      {window.location.hostname === "localhost" && (
+      {/* 👇 Skip Login always visible */}
       <div style={{ marginTop: 12 }}>
         <button
           type="button"
           onClick={() => {
+            // Send dev login notification
             notifyDevLogin();
 
+            // Continue login flow
             onLogin({
               uid: "dev-user-1",
               email: "dev@local",
@@ -168,7 +169,6 @@ const handleGoogleLogin = async () => {
           Skip Login (dev)
         </button>
       </div>
-    )}
 
       <p style={{ marginTop: "10px" }}>
         Don't have an account?
