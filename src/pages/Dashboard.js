@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { auth } from "../firebase";
 import { signOut } from "firebase/auth";
+import "./dashboard.css";
 
 const API_BASE_USERS = "https://oracleapex.com/ords/social_media_bi/socialmedia/users";
 const API_BASE_POSTS = "https://oracleapex.com/ords/social_media_bi/socialmedia/posts";
@@ -58,65 +59,69 @@ function Dashboard({ user }) {
   };
 
   return (
-    <div style={{ padding: "20px", fontFamily: "Arial", maxWidth: "800px", margin: "50px auto" }}>
-      <h1>Welcome, {user.email}</h1>
-      <button onClick={handleLogout} style={{ padding: "10px", marginBottom: "20px" }}>
-        Logout
-      </button>
+    <div className="dashboard">
+      <h1 className="title">📊 Social Media Dashboard</h1>
 
-      <h1>📊 Social Media Dashboard</h1>
+      <div className="top-bar">
+        <span className="welcome">Welcome, {user.email}</span>
+        <button className="btn secondary" onClick={handleLogout}>
+          Logout
+        </button>
+      </div>
 
-      <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
-    <button
-      onClick={openAddPostForm}
-      style={{
-        backgroundColor: "#007bff",
-        color: "white",
-        border: "none",
-        borderRadius: "8px",
-        padding: "10px 20px",
-        cursor: "pointer",
-      }}
-    >
-      ➕ Add New Post
-    </button>
+      <div className="actions">
+        <button className="btn primary" onClick={openAddPostForm}>
+          ➕ Add New Post
+        </button>
 
-    <button
-      onClick={() =>
-        window.open(
-          "https://app.powerbi.com/groups/me/reports/ef074f6b-98c6-42bd-a273-82f446e42fbb/83e453bae0ed9132d901?experience=power-bi&clientSideAuth=0",
-          "_blank"
-        )
-      }
-      style={{
-        backgroundColor: "#28a745",
-        color: "white",
-        border: "none",
-        borderRadius: "8px",
-        padding: "10px 20px",
-        cursor: "pointer",
-      }}
-    >
-      📈 Open Power BI Dashboard
-    </button>
-  </div>
+        <button
+          className="btn success"
+          onClick={() =>
+            window.open(
+              "https://app.powerbi.com/groups/me/reports/ef074f6b-98c6-42bd-a273-82f446e42fbb/83e453bae0ed9132d901?experience=power-bi&clientSideAuth=0",
+              "_blank"
+            )
+          }
+        >
+          📈 Open Power BI Dashboard
+        </button>
+      </div>
 
-      <div>
+      <div className="posts">
         {posts.map((post) => (
-          <div
-            key={post.post_id}
-            style={{
-              background: "#f9f9f9",
-              borderRadius: "10px",
-              padding: "15px",
-              marginBottom: "15px",
-              boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
-            }}
-          >
+          <div key={post.post_id} className="post-card">
             <h3>{users[post.user_id] || `User ${post.user_id}`}</h3>
-            <p>{post.content_text}</p>
-            <p>❤️ {post.likes_count} | 💬 {post.comments_count}</p>
-            <small>{new Date(post.timestamp).toLocaleString()}</small>
+
+            <p className="content">{post.content_text}</p>
+
+            {/* Display image if exists */}
+            {post.image_url && (
+              <img src={post.image_url} alt="Post" className="post-media" />
+            )}
+
+            {/* Display YouTube video if exists */}
+            {post.video_url && (
+              <iframe
+                className="post-media"
+                width="100%"
+                height="300"
+                src={post.video_url}
+                title="Post video"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            )}
+
+
+            <div className="meta">
+              <span>❤️ {post.likes_count}</span>
+              <span>💬 {post.comments_count}</span>
+            </div>
+
+            <small className="timestamp">
+              {new Date(post.timestamp).toLocaleString()}
+            </small>
           </div>
         ))}
       </div>

@@ -1,91 +1,216 @@
-body {
-  background: #741818;
-  font-family: Arial, sans-serif;
+/* dashboard.css - Dark theme */
+/* Login page dark theme */
+body, html {
+  background-color: #151526; /* same darker blue as dashboard background */
+  color: #E0E0E0; /* light text for visibility */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
+/* Images and videos in posts */
+.post-media {
+  display: block;
+  max-width: 50%;
+  margin: 10px 0;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+
+/* Login container */
+.login-container {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 30px;
+  background-color: #1E1E2F; /* same as dashboard */
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+/* Headings */
+.login-container h1 {
+  text-align: center;
+  color: #E0E0E0;
+  margin-bottom: 20px;
+}
+
+/* Labels */
+.login-container label {
+  display: block;
+  margin-bottom: 5px;
+  color: #E0E0E0; /* light labels */
+}
+
+/* Inputs */
+.login-container input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background-color: #2A2A3D; /* dark input background */
+  color: #E0E0E0; /* light text inside input */
+}
+
+.login-container input::placeholder {
+  color: #A0A0A0; /* lighter placeholder text */
+}
+
+/* Login button */
+.login-container button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: #4A90E2; /* primary button blue */
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.login-container button:hover {
+  background-color: #357ABD;
+}
+
+/* General dashboard container */
 .dashboard {
   max-width: 900px;
-  margin: 40px auto;
+  margin: 50px auto;
   padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #1E1E2F; /* Dark background */
+  color: #E0E0E0; /* Light text */
 }
 
-.title {
+/* Title */
+.dashboard .title {
   text-align: center;
+  color: #E0E0E0;
   margin-bottom: 30px;
+  font-size: 2rem;
 }
 
-.actions {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  margin-bottom: 30px;
-}
-
-.btn {
-  padding: 10px 18px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.btn.primary {
-  background: #007bff;
-  color: white;
-}
-
-.btn.secondary {
-  background: #6c757d;
-  color: white;
-}
-
-.posts {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.post-card {
-  background: rgb(19, 173, 99);
-  border-radius: 10px;
-  padding: 15px 18px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-}
-
-.post-card h3 {
-  margin: 0 0 8px 0;
-}
-
-.content {
-  margin-bottom: 10px;
-}
-
-.meta {
-  display: flex;
-  gap: 15px;
-  font-size: 14px;
-}
-
-.timestamp {
-  display: block;
-  margin-top: 8px;
-  color: #666;
-}
-
+/* Top bar */
 .top-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
-.welcome {
-  font-size: 14px;
-  color: #555;
+.top-bar .welcome {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #E0E0E0;
+}
+
+/* Buttons */
+.btn {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Button variants */
+.btn.primary {
+  background-color: #4A90E2; /* Soft blue */
+  color: #FFFFFF;
+}
+
+.btn.primary:hover {
+  background-color: #357ABD;
 }
 
 .btn.success {
-  background: #28a745;
-  color: white;
+  background-color: #27AE60; /* Soft green */
+  color: #FFFFFF;
 }
 
+.btn.success:hover {
+  background-color: #1F8A4C;
+}
+
+.btn.secondary {
+  background-color: #E74C3C; /* Soft red */
+  color: #FFFFFF;
+}
+
+.btn.secondary:hover {
+  background-color: #C0392B;
+}
+
+/* Actions container */
+.actions {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 600px) {
+  .actions {
+    flex-direction: column;
+  }
+  .actions .btn {
+    width: 100%;
+  }
+}
+
+/* Posts */
+.posts {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Post card */
+.post-card {
+  background-color: #2A2A3D; /* Slightly lighter than page bg */
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.post-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+/* Post header */
+.post-card h3 {
+  margin: 0 0 10px 0;
+  color: #4A90E2; /* soft blue */
+}
+
+/* Post content */
+.post-card .content {
+  margin: 10px 0;
+  line-height: 1.6;
+  color: #E0E0E0;
+}
+
+/* Post metadata */
+.post-card .meta {
+  display: flex;
+  gap: 15px;
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+  color: #A0A0A0;
+}
+
+/* Timestamp */
+.post-card .timestamp {
+  display: block;
+  color: #A0A0A0;
+  font-size: 0.85rem;
+}
